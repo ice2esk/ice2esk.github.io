@@ -1,0 +1,133 @@
+/* styles.css — Single stylesheet for all pages
+   Demonstrates: selectors (element, class, attribute), flex/grid layout,
+   hover effects, paddings/margins, borders, coloring, and font settings. */
+
+/* Base element selectors */
+:root {
+  --bg: #ffffff;
+  --ink: #111827;
+  --muted: #6b7280;
+  --primary: #4f46e5;
+  --card: #f9fafb;
+  --border: #e5e7eb;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* Header + Navigation using Flexbox */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+  position: sticky; top: 0; z-index: 10;
+}
+
+.site-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+}
+
+.site-nav .brand { display: flex; align-items: center; gap: 0.5rem; }
+.site-nav .brand .logo { width: 32px; height: 32px; }
+.site-nav .brand-text { font-weight: 700; letter-spacing: 0.2px; }
+
+.menu-toggle { display: none; }
+
+.menu {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+}
+
+.menu a {
+  text-decoration: none;
+  color: var(--ink);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+/* Attribute selector for hover on links */
+.menu a:hover, .menu a:focus { 
+  background: var(--card);
+  border-color: var(--border);
+  color: var(--primary);
+}
+
+/* State styling for active page using attribute selector */
+.menu a.active, .menu a[aria-current="page"].active {
+  background: rgba(79,70,229,0.08);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Container + Grid layouts */
+.container {
+  width: min(1100px, 92%);
+  margin: 1.25rem auto;
+  display: grid;
+  gap: 1rem;
+}
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
+@media (max-width: 860px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .menu { display:none; }
+  .menu.open { display:flex; flex-direction: column; }
+  .menu-toggle { display: inline-flex; padding: 0.5rem 0.75rem; }
+}
+
+/* Cards */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.hero h1 { margin-top: 0; }
+.lead { color: var(--muted); }
+
+.key-terms { display: flex; gap: 0.5rem; flex-wrap: wrap; padding-left: 1rem; }
+.key-terms li { background: #fff; border: 1px solid var(--border); border-radius: 999px; padding: 0.25rem 0.75rem; }
+
+.illustration { border: 1px dashed var(--border); border-radius: 8px; background: #fff; padding: 0.5rem; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; background: #fff; }
+caption { text-align: left; font-weight: 600; margin: 0.5rem 0; }
+th, td { border: 1px solid var(--border); padding: 0.5rem 0.6rem; }
+thead th { background: #f3f4f6; }
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--border);
+  margin-top: 2rem; padding: 1rem;
+  text-align: center; color: var(--muted);
+}
+.site-footer a { color: var(--primary); }
+
+/* Example of class selector for special notes */
+.note {
+  border-left: 4px solid var(--primary);
+  padding: 0.5rem 0.75rem;
+  background: #eef2ff;
+}
+
+/* Example of attribute selector usage */
+a[data-key]:hover { text-decoration: underline; }
+
+/* Documentation comments are included in HTML pages near key structures */

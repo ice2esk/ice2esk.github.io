@@ -1,0 +1,84 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Home — IT 3203 Project</title>
+      <link rel="stylesheet" href="styles.css">
+      <meta name="description" content="Student website for IT 3203 Project Milestone #1">
+    </head>
+    <body>
+      <header class="site-header">
+
+    <!-- Main navigation: present on every page -->
+    <nav class="site-nav" role="navigation" aria-label="Main">
+      <div class="brand">
+        <img src="assets/logo.svg" alt="" aria-hidden="true" class="logo">
+        <span class="brand-text">IT 3203 Web Project</span>
+      </div>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+      <ul id="menu" class="menu">
+        <li><a href="index.html" class="active" aria-current="page" data-key="home">Home</a></li><li><a href="topic-requirements.html" aria-current="page" data-key="req">Requirements Management</a></li><li><a href="topic-change-control.html" aria-current="page" data-key="chg">Change Control</a></li><li><a href="key-concepts.html" aria-current="page" data-key="keys">Key Concepts</a></li><li><a href="references.html" aria-current="page" data-key="refs">References</a></li><li><a href="about.html" aria-current="page" data-key="about">About</a></li>
+      </ul>
+    </nav>
+
+      </header>
+      <main class="container">
+
+<section class="hero card">
+  <h1>Requirements Management &amp; Change Control</h1>
+  <p class="lead">A research project.</p>
+  <ul class="key-terms">
+    <li>Requirements</li>
+    <li>Traceability</li>
+    <li>Baselines</li>
+    <li>Change Requests</li>
+    <li>Impact Analysis</li>
+  </ul>
+</section>
+
+<section class="toc grid-2">
+  <article class="card">
+    <h2>Table of Contents</h2>
+    <ol>
+      <li><a href="topic-requirements.html">Requirements Management</a></li>
+      <li><a href="topic-change-control.html">Change Control</a></li>
+      <li><a href="key-concepts.html">Key Concepts (5–7 items)</a></li>
+      <li><a href="references.html">References &amp; Resources</a></li>
+      <li><a href="about.html">About this Project</a></li>
+    </ol>
+  </article>
+
+  <aside class="card">
+    <h3>Abstract</h3>
+    <p>
+      This site summarizes the basic ideas of Requirements Management and
+      Change Control, showing how structured design stages, traceability, and
+      feedback loops reduce cost, risk, and rework.
+    </p>
+    <img class="illustration"
+         src="assets/design-process.png"
+         alt="Diagram showing staged development and validation process with gateways and testing across design phases">
+  </aside>
+</section>
+
+      </main>
+
+  <footer class="site-footer">
+    <p>This website is a class project for <a href="https://ksuweb.github.io/IT3203/" target="_blank" rel="noopener">IT 3203 Web Development</a>. Content is for educational purposes.</p>
+  </footer>
+
+      <script>
+        // Small toggle to make the menu mobile accesible
+        const btn = document.querySelector('.menu-toggle');
+        const menu = document.getElementById('menu');
+        if (btn && menu) {
+          btn.addEventListener('click', () => {
+            const expanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', String(!expanded));
+            menu.classList.toggle('open');
+          });
+        }
+      </script>
+    </body>
+    </html>

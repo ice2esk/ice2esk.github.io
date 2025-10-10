@@ -1,0 +1,62 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>About</title>
+      <link rel="stylesheet" href="styles.css">
+      <meta name="description" content="Student website for IT 3203 Project Milestone #1">
+    </head>
+    <body>
+      <header class="site-header">
+
+    <!-- Main navigation: present on every page -->
+    <nav class="site-nav" role="navigation" aria-label="Main">
+      <div class="brand">
+        <img src="assets/logo.svg" alt="" aria-hidden="true" class="logo">
+        <span class="brand-text">IT 3203 Web Project</span>
+      </div>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+      <ul id="menu" class="menu">
+        <li><a href="index.html" aria-current="page" data-key="home">Home</a></li><li><a href="topic-requirements.html" aria-current="page" data-key="req">Requirements Management</a></li><li><a href="topic-change-control.html" aria-current="page" data-key="chg">Change Control</a></li><li><a href="key-concepts.html" aria-current="page" data-key="keys">Key Concepts</a></li><li><a href="references.html" aria-current="page" data-key="refs">References</a></li><li><a href="about.html" class="active" aria-current="page" data-key="about">About</a></li>
+      </ul>
+    </nav>
+
+      </header>
+      <main class="container">
+
+<article class="card">
+  <h1>About</h1>
+  <p><strong>Student:</strong> Jake Sucan</p>
+  <p><strong>Course:</strong> IT 3203 Web Development</p>
+  <p><strong>Project:</strong> Milestone #1 — Basic Website with HTML/CSS</p>
+  <h2>Mini Résumé</h2>
+  <ul>
+    <li>IT Major/Cyber Security Concentration</li>
+    <li>Skills: HTML, CSS, GitHub Pages</li>
+    <li>Interests: Gaming, Movies</li>
+  </ul>
+  <h2>Project Notes</h2>
+  <p>This site was coded with HTML5 and a CSS file. It shows images, lists, flex/grid layout, a table, hover styles, and a nav. Each page includes notes explaining the code and coding process.</p>
+</article>
+
+      </main>
+
+  <footer class="site-footer">
+    <p>This website is a class project for <a href="https://ksuweb.github.io/IT3203/" target="_blank" rel="noopener">IT 3203 Web Development</a>.</p>
+  </footer>
+
+      <script>
+        // Small toggle to make the menu mobile accesible
+        const btn = document.querySelector('.menu-toggle');
+        const menu = document.getElementById('menu');
+        if (btn && menu) {
+          btn.addEventListener('click', () => {
+            const expanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', String(!expanded));
+            menu.classList.toggle('open');
+          });
+        }
+      </script>
+    </body>
+    </html>
