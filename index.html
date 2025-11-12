@@ -1,29 +1,35 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Home — IT 3203 Project</title>
-      <link rel="stylesheet" href="styles.css">
-      <meta name="description" content="Student website for IT 3203 Project Milestone #1">
-    </head>
-    <body>
-      <header class="site-header">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home — IT 3203 Project</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Student website for IT 3203 Project Milestone #1">
+</head>
+<body>
+  <header class="site-header">
 
-    <!-- Main navigation: present on every page -->
-    <nav class="site-nav" role="navigation" aria-label="Main">
-      <div class="brand">
-        <img src="assets/logo.svg" alt="" aria-hidden="true" class="logo">
-        <span class="brand-text">IT 3203 Web Project</span>
-      </div>
-      <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
-      <ul id="menu" class="menu">
-        <li><a href="index.html" class="active" aria-current="page" data-key="home">Home</a></li><li><a href="topic-requirements.html" aria-current="page" data-key="req">Requirements Management</a></li><li><a href="topic-change-control.html" aria-current="page" data-key="chg">Change Control</a></li><li><a href="key-concepts.html" aria-current="page" data-key="keys">Key Concepts</a></li><li><a href="references.html" aria-current="page" data-key="refs">References</a></li><li><a href="about.html" aria-current="page" data-key="about">About</a></li>
-      </ul>
-    </nav>
+  <!-- Main navigation: present on every page -->
+  <nav class="site-nav" role="navigation" aria-label="Main">
+    <div class="brand">
+      <img src="assets/logo.svg" alt="" aria-hidden="true" class="logo">
+      <span class="brand-text">IT 3203 Web Project</span>
+    </div>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+    <ul id="menu" class="menu">
+      <li><a href="index.html" class="active" aria-current="page" data-key="home">Home</a></li>
+      <li><a href="topic-requirements.html" data-key="req">Requirements Management</a></li>
+      <li><a href="topic-change-control.html" data-key="chg">Change Control</a></li>
+      <li><a href="key-concepts.html" data-key="keys">Key Concepts</a></li>
+      <li><a href="references.html" data-key="refs">References</a></li>
+      <li><a href="about.html" data-key="about">About</a></li>
+      <li><a href="quiz.html" data-key="quiz">Quiz</a></li>
+    </ul>
+  </nav>
 
-      </header>
-      <main class="container">
+  </header>
+  <main class="container">
 
 <section class="hero card">
   <h1>Requirements Management &amp; Change Control</h1>
@@ -46,6 +52,7 @@
       <li><a href="key-concepts.html">Key Concepts (5–7 items)</a></li>
       <li><a href="references.html">References &amp; Resources</a></li>
       <li><a href="about.html">About this Project</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
     </ol>
   </article>
 
@@ -62,23 +69,24 @@
   </aside>
 </section>
 
-      </main>
+  </main>
 
   <footer class="site-footer">
     <p>This website is a class project for <a href="https://ksuweb.github.io/IT3203/" target="_blank" rel="noopener">IT 3203 Web Development</a>. Content is for educational purposes.</p>
   </footer>
 
-      <script>
-        // Small toggle to make the menu mobile accesible
-        const btn = document.querySelector('.menu-toggle');
-        const menu = document.getElementById('menu');
-        if (btn && menu) {
-          btn.addEventListener('click', () => {
-            const expanded = btn.getAttribute('aria-expanded') === 'true';
-            btn.setAttribute('aria-expanded', String(!expanded));
-            menu.classList.toggle('open');
-          });
-        }
-      </script>
-    </body>
-    </html>
+  <script>
+    // Small toggle to make the menu mobile accessible
+    const btn = document.querySelector('.menu-toggle');
+    const menu = document.getElementById('menu');
+    if (btn && menu) {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        menu.classList.toggle('open');
+      });
+    }
+  </script>
+</body>
+</html>
+
