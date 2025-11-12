@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Requirements Management & Change Control Quiz</title>
+  <style>
+    body{font-family:system-ui,Arial;background:#0f172a;color:#e5e7eb;margin:0;padding:0}
+    .wrap{max-width:900px;margin:auto;padding:1rem}
+    .q{background:#1f2937;border:1px solid #111827;border-radius:10px;padding:1rem;margin:1rem 0}
+    label{display:block;margin:.25rem 0;cursor:pointer}
+    input[type=text]{width:100%;padding:.5rem;border-radius:6px;border:1px solid #334155;background:#0b1222;color:#e5e7eb}
+    button{margin:.5rem .5rem 0 0;padding:.6rem 1rem;border:0;border-radius:8px;font-weight:600;cursor:pointer}
+    button.primary{background:#38bdf8;color:#00131c}
+    button.secondary{background:#0b1222;color:#e5e7eb;border:1px solid #1f2a3a}
+    .result{margin-top:1rem;padding:1rem;border-radius:10px;background:#111827}
+    .ok{color:#22c55e}.bad{color:#ef4444}
+  </style>
+</head>
+<body>
+<div class="wrap">
+<h1>Requirements Management & Change Control Quiz</h1>
+
+<form id="qz">
+  <!-- Question 1 Fill-in-the-blank -->
+  <div class="q" data-a="requirements baseline" data-t="txt" data-p="20">
+    <p>1) The official record of every approved project requirement is called the ________.</p>
+    <input type="text" name="q1">
+  </div>
+
+  <!-- Question 2 Single choice -->
+  <div class="q" data-a="c" data-t="sg" data-p="20">
+    <p>2) Which document helps make sure that each system feature can be traced back to its origin?</p>
+    <label><input type="radio" name="q2" value="a"> Change Request Form</label>
+    <label><input type="radio" name="q2" value="b"> Test Plan</label>
+    <label><input type="radio" name="q2" value="c"> Traceability Matrix</label>
+    <label><input type="radio" name="q2" value="d"> Risk Register</label>
+  </div>
+
+  <!-- Question 3 Single choice -->
+  <div class="q" data-a="b" data-t="sg" data-p="20">
+    <p>3) When a stakeholder requests a modification of an approved requirement, what should happen first?</p>
+    <label><input type="radio" name="q3" value="a"> Implement the change as soon as possible</label>
+    <label><input type="radio" name="q3" value="b"> Submit and log a Change Request</label>
+    <label><input type="radio" name="q3" value="c"> Update the baseline manually</label>
+    <label><input type="radio" name="q3" value="d"> Cancel the project until review</label>
+  </div>
+
+  <!-- Question 4 Single choice -->
+  <div class="q" data-a="a" data-t="sg" data-p="20">
+    <p>4) Which activity determines how a change will affect cost, schedule, and scope?</p>
+    <label><input type="radio" name="q4" value="a"> Impact Analysis</label>
+    <label><input type="radio" name="q4" value="b"> Peer Review</label>
+    <label><input type="radio" name="q4" value="c"> Validation Testing</label>
+    <label><input type="radio" name="q4" value="d"> Baseline Audit</label>
+  </div>
+
+  <!-- Question 5 Multi-select -->
+  <div class="q" data-a="a,c,d" data-t="ml" data-p="20">
+    <p>5) Select all best practices for effective change control:</p>
+    <label><input type="checkbox" name="q5" value="a"> Document every request</label>
+    <label><input type="checkbox" name="q5" value="b"> Allow verbal approvals only</label>
+    <label><input type="checkbox" name="q5" value="c"> Evaluate impacts before approval</label>
+    <label><input type="checkbox" name="q5" value="d"> Update baselines after approval</label>
+  </div>
+
+  <!-- Buttons -->
+  <button type="submit" class="primary">Submit</button>
+  <button type="button" class="secondary" id="rs">Reset</button>
+
+  <!-- Results -->
+  <div id="rslt" class="result" hidden>
+    <p><strong>Score:</strong> <span id="sc">0</span>/100 — <span id="st"></span></p>
+    <div id="br"></div>
+  </div>
+</form>
+</div>
+
+<script>
+/* === Shortcuts for elements === */
+const qz = document.getElementById('qz');     // quiz form
+const rslt = document.getElementById('rslt'); // results box
+const sc = document.getElementById('sc');     // score
+const st = document.getElementById('st');     // status
+const br = document.getElementById('br');     // per-question feedback
+const rs = document.getElementById('rs');     // reset button
+const th = 70;                                // passing grade
+
+/* === Helper: normalize text === */
+function nm(tx){return (tx||'').trim().toLowerCase()}
+
+/* === Grading === */
+function gr(){
+  let scv=0, brd=[];
+  document.querySelectorAll('.q').forEach((q,i)=>{
+    const t=q.dataset.t, a=q.dataset.a, p=+q.dataset.p;
+    let ua='', ok=false;
+    // Fill-in
+    if(t==='txt'){ua=nm(q.querySelector('input').value);ok=ua===nm(a);}
+    // Single
+    if(t==='sg'){const ch=q.querySelector('input:checked');ua=ch?ch.value:'';ok=ua===a;}
+    // Multi
+    if(t==='ml'){
+      const ch=[...q.querySelectorAll('input:checked')].map(x=>x.value).sort();
+      const ca=a.split(',').sort();
+      ua=ch.join(',');ok=ch.length===ca.length&&ch.every((v,i)=>v===ca[i]);
+    }
+    if(ok) scv+=p;
+    brd.push({n:i+1,ok,ua,a,p});
+  });
+  return {scv,brd};
+}
+
+/* === Show results === */
+function rd(r){
+  const ps=r.scv>=th;
+  sc.textContent=r.scv;
+  st.textContent=ps?'PASS':'FAIL';
+  st.className=ps?'ok':'bad';
+  br.innerHTML='';
+  r.brd.forEach(x=>{
+    const d=document.createElement('div');
+    d.innerHTML=`Q${x.n}: <span class="${x.ok?'ok':'bad'}">${x.ok?'Correct':'Wrong'}</span> — Your: ${x.ua||'none'} | Ans: ${x.a}`;
+    br.appendChild(d);
+  });
+  rslt.hidden=false;
+}
+
+/* === Events === */
+qz.addEventListener('submit',e=>{
+  e.preventDefault();
+  rd(gr());
+});
+rs.addEventListener('click',()=>{
+  qz.reset();
+  rslt.hidden=true;
+  sc.textContent='0';
+  st.textContent='';
+  br.innerHTML='';
+});
+</script>
+</body>
+</html>
